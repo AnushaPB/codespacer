@@ -1,8 +1,10 @@
-# Dockerfile modified from: http://haines-lab.com/post/2022-01-23-automating-computational-reproducibility-with-r-using-renv-docker-and-github-actions/
-# Start with geospatial v 4.3.1
-FROM ghcr.io/rocker-org/devcontainer/geospatial:4.3
+# Start with tidyverse v 4.3.1 from rocker
+FROM ghcr.io/rocker-org/devcontainer/tidyverse:4.3
+# You can use other rocker images:https://rocker-project.org/images/
+# For example for working with geospatial packages:
+#FROM ghcr.io/rocker-org/devcontainer/geospatial:4.3
 
-# Relabel docker (otherwise it will have the geospatial description)
+# Relabel docker (otherwise it will have the rocker description)
 LABEL org.opencontainers.image.description=""
 
 # Install any additional desired packages (edit the install.R script to add packages)
