@@ -16,6 +16,7 @@ RUN Rscript -e "remotes::install_github('rstudio/renv@${RENV_VERSION}')"
 WORKDIR /codespacer
 
 # Copy the lockfile over to the Docker image
+# (there must be an renv.lock file at the same level of the Dockerfile, or provide a relative path)
 COPY renv.lock renv.lock
 # Install all R packages specified in renv.lock
 RUN Rscript -e 'renv::restore()'
