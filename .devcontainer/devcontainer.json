@@ -1,5 +1,6 @@
 {
 	"name": "R Environment",
+	// CHANGE from ghcr.io/anushapb/codespacer:latest to `ghcr.io/yourusername/yourimagename:latest`
 	"image": "ghcr.io/anushapb/codespacer:latest",
 	"runArgs": [ "--security-opt", "seccomp=unconfined" ],
 	"waitFor": "onCreateCommand",
