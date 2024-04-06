@@ -5,6 +5,7 @@ on:
     # In this case, the action is triggered when the Dockerfile or install.R are changed
     paths:
       - Dockerfile
+      - .github/workflows/docker-image.yml
       - install.R
     branches: [ "main" ]
     # Publish semver tags as releases.
