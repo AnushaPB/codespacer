@@ -14,7 +14,19 @@ This repository uses code from the following repositories:
 
 ## 1. Building a Docker image
 
-To build a Docker image for the codespace, we use a [Dockerfile](Dockerfile) that sets up the image with the necessary dependencies for running R. 
+To build a Docker image for the codespace, we use a [Dockerfile](Dockerfile) that sets up a Docker image with the necessary dependencies for running R. The Docker image is built using a GitHub Action and pushed to the GitHub Container Registry. 
+
+**Docker basics:**  Imagine you bought a brand new Lenovo laptop, installed an Ubuntu operating system on it, installed R and RStudio, installed all of the packages you needed and then gave it to your friend. Docker is like doing that but an unlimited number of times to as many people as you want and set-up however you want it.
+
+1. **Dockerfile** - text file of instructions for creating the docker image (specifies what operating system, what software, etc.). The Docker file is used to build the Docker image.
+2. **Docker image** - package (not an R package) that contains everything we specified in the Dockerfile needed to run the code. The Docker image is used to create a Docker container
+3. **Docker container** - the actual thing that runs and you interact with (like a virtual machine/computer)
+
+For more information about Docker: https://docs.docker.com/get-started/overview/
+
+**GitHub action basics:** We could build the Docker image on our own computer, but that would mean everytime we changed anything about our image we would have to bother to do it again. Instead, we can just have GitHub do it! In general, GitHub actions are a way to automate tasks in your repository.
+
+For more information about GitHub Actions: https://docs.github.com/en/actions
 
 ### 1.1 The Dockerfile
 
@@ -90,13 +102,13 @@ jobs:
         run: docker push ghcr.io/anushapb/codespacer:latest
 ```
 
-Anytime you change the DOckerfile, docker-image.yml, or install.R files, the Docker image will be built and pushed to the GitHub container registry **automatically!**. 
+Anytime you change the Dockerfile, docker-image.yml, or install.R files, the Docker image will be built and pushed to the GitHub container registry **automatically!**
 
 You can see the image here: [ghcr.io/anushapb/codespacer](https://github.com/AnushaPB/codespacer/pkgs/container/codespacer)
 
 ## 2. Setting up a devcontainer
 
-We can now use the Docker image we've built as the base our codespace. We use three files to setup the codespace, all located in the [.devcontainer](.devcontainer/) folder.  The main file is the [devcontainer.json](.devcontainer/devcontainer.json) file. The other two files ([setup.sh](.devcontainer/setup.sh) and [welcome.sh](.devcontainer/welcome.sh)) are used to configure the RStudio session in the codespace. Without these extra files the Rstudio session will not start automatically and the session will not start within the repositories .RProject, however all of these things can technically be done manually within the codespace, if you don't want to use these files.
+We can now use the Docker image we've built as the base our codespace. We use three files to setup the codespace, all located in the [.devcontainer](.devcontainer/) folder.  The main file is the [devcontainer.json](.devcontainer/devcontainer.json) file. The other two files ([setup.sh](.devcontainer/setup.sh) and [welcome.sh](.devcontainer/welcome.sh)) are used to configure the RStudio session in the codespace. Without these extra files the Rstudio session will not start automatically and the session will not start within the repository's `.RProject`, however all of these things can technically be done manually within the codespace, if you don't want to use these files.
 
 File overview:
 
