@@ -5,3 +5,5 @@
 # For example:
 # install.packages("wingen")
 # remotes::install_github('AnushaPB/wingen')
+
+print("R package installs complete!")
