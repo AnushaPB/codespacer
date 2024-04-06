@@ -1,11 +1,11 @@
 name: docker-build
 on:
   push:
-    # Optional: specify paths for files that should trigger the action if changed
-    #paths:
-      #- "R/**.R"
-      #- .github/workflows/docker-image.yml
-      #- Dockerfile
+    # Optional: specify paths for files that should trigger the action if changed 
+    # In this case, the action is triggered when the Dockerfile or install.R are changed
+    paths:
+      - Dockerfile
+      - install.R
     branches: [ "main" ]
     # Publish semver tags as releases.
     tags: [ 'v*.*.*' ]
@@ -23,6 +23,6 @@ jobs:
           username: ${{github.actor}}
           password: ${{secrets.GITHUB_TOKEN}}
       - name: Build the Docker image
-        run: docker build . --file Dockerfile --tag ghcr.io/AnushaPB/codespacer:latest
+        run: docker build . --file Dockerfile --tag ghcr.io/anushapb/codespacer:latest
       - name: Publish
-        run: docker push ghcr.io/AnushaPB/codespacer:latest
+        run: docker push ghcr.io/anushapb/codespacer:latest
