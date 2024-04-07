@@ -3,29 +3,26 @@
 This repository provides an example workflow of how to setup a GitHub codespace for R. First, a Docker image with all the necessary dependencies is built using a GitHub Action and pushed to the GitHub Container Registry. Then, the image is used to build the codespace from this image. Some additional setup is also done to make sure the RStudio session starts automatically and is in the correct project.
 
 This repository can be forked and used as a template for setting up your own codespace for R. There are only two  changes required:
-1. Change the docker-image.yml to push the image to your github account (i.e., change `ghcr.io/anushapb/codespacer:latest` to `ghcr.io/yourusername/yourimagename:latest`)
+1. Change the [docker-image.yml](.github/workflows/docker-image.yml) to push the image to your github account (i.e., change `ghcr.io/anushapb/codespacer:latest` to `ghcr.io/yourusername/yourimagename:latest`)
 
-2. Change the devcontainer.json file to use your image (i.e., change `ghcr.io/anushapb/codespacer:latest` to `ghcr.io/yourusername/yourimagename:latest`)
+2. Change the [docker-image.yml](.github/workflows/docker-image.yml) file to use your image (i.e., change `ghcr.io/anushapb/codespacer:latest` to `ghcr.io/yourusername/yourimagename:latest`)
 
-You will likely also want to update the install.R file to include any additional R packages you want to install.
+You will likely also want to update the [install.R](install.R) file to include any additional R packages you want to install.
 
-This repository uses code from the following repositories:
-1. https://github.com/boettiger-lab/nasa-topst-env-justice
-2. https://github.com/revodavid/devcontainers-rstudio/tree/main
+This repository uses code from: https://github.com/boettiger-lab/nasa-topst-env-justice
 
 ## 1. Building a Docker image
 
 To build a Docker image for the codespace, we use a [Dockerfile](Dockerfile) that sets up a Docker image with the necessary dependencies for running R. The Docker image is built using a GitHub Action and pushed to the GitHub Container Registry. 
 
-**Docker basics:**  Imagine you bought a brand new Lenovo laptop, installed an Ubuntu operating system on it, installed R and RStudio, installed all of the packages you needed and then gave it to your friend. Docker is like doing that but an unlimited number of times to as many people as you want and set-up however you want it.
-
+**Docker basics:**  Imagine you bought a brand new Lenovo laptop, installed an Ubuntu operating system on it, installed R and RStudio, installed all of the packages you needed and then gave it to your friend. Docker is like doing that but it's a virtual computer than you can share with as many people as you want and set-up however you want it.
 1. **Dockerfile** - text file of instructions for creating the docker image (specifies what operating system, what software, etc.). The Docker file is used to build the Docker image.
-2. **Docker image** - package (not an R package) that contains everything we specified in the Dockerfile needed to run the code. The Docker image is used to create a Docker container
-3. **Docker container** - the actual thing that runs and you interact with (like a virtual machine/computer)
+2. **Docker image** - package that contains everything we specified in the Dockerfile needed to run the code. The Docker image is used to create a Docker container.
+3. **Docker container** - the actual thing that runs and you interact with (like a virtual machine/computer).
 
 For more information about Docker: https://docs.docker.com/get-started/overview/
 
-**GitHub action basics:** We could build the Docker image on our own computer, but that would mean everytime we changed anything about our image we would have to bother to do it again. Instead, we can just have GitHub do it! In general, GitHub actions are a way to automate tasks in your repository.
+**GitHub action basics:** We could build the Docker image on our own computer, but that would mean everytime we changed anything about our image we would have to bother to do it again. Instead, we can just have GitHub do it! In general, GitHub Actions are a way to automate tasks in your repository.
 
 For more information about GitHub Actions: https://docs.github.com/en/actions
 
@@ -33,7 +30,7 @@ For more information about GitHub Actions: https://docs.github.com/en/actions
 
 First, we write a Dockerfile that will set-up a Docker image that contains the necessary dependencies for running R in a codespace. 
 
-This image is built off the tidyverse v 4.3.1 Dev Container image from the [rocker project](https://rocker-project.org/). This should work fine for most users. You may want to witch to another Dev Container image depending on your requirements (other options can be found [here](https://rocker-project.org/images/devcontainer/images.html)). For example for working with geospatial packages you may want to use the geospatial rocker image (ghcr.io/rocker-org/devcontainer/geospatial:4.3).
+This image is built off the tidyverse v 4.3.1 Dev Container image from the [rocker project](https://rocker-project.org/). This should work fine for most users. You may want to switch to another Dev Container image depending on your requirements (other options can be found [here](https://rocker-project.org/images/devcontainer/images.html)). For example for working with geospatial packages you may want to use the geospatial rocker image (ghcr.io/rocker-org/devcontainer/geospatial:4.3).
 
 The [Dockerfile](Dockerfile) is as follows:
 
