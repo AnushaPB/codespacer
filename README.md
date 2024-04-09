@@ -57,7 +57,7 @@ remotes::install_github('AnushaPB/wingen')
 
 ### 1.2 Building the Docker image
 
-We will use a GitHub Action to automatically build our Docker image and push it to the GitHub container registry whenever changes are made to the specified files. The GitHub Action is setup using the [docker-image.yml](.github/workflows/docker-image.yml) file in the [.github/workflows](.github/workflows) folder. The Docker image name will be the same as your repository name.:
+We will use a GitHub Action to automatically build our Docker image and push it to the GitHub container registry whenever changes are made to the specified files. The GitHub Action is setup using the [docker-image.yml](.github/workflows/docker-image.yml) file in the [.github/workflows](.github/workflows) folder. The Docker image name will be the same as your repository name (note: if there are any uppercase letters in your username or repo name, they will be converted to lower case).:
 
 ```yaml
 name: docker-build
@@ -86,14 +86,15 @@ jobs:
           username: ${{github.actor}}
           password: ${{secrets.GITHUB_TOKEN}}
       - name: Build the Docker image
-        run: docker build . --file Dockerfile --tag ghcr.io/${GITHUB_REPOSITORY}:latest
+        # note: if there are any uppercase letters in your username or repo name, they will be converted to lower case
+        run: docker build . --file Dockerfile --tag ghcr.io/${GITHUB_REPOSITORY,,}:latest
       - name: Publish
-        run: docker push ghcr.io/${GITHUB_REPOSITORY}:latest
+        run: docker push ghcr.io/${GITHUB_REPOSITORY,,}:latest
 ```
 
 Anytime you change the Dockerfile, docker-image.yml, or install.R files, the Docker image will be built and pushed to the GitHub container registry **automatically!**
 
-You can see my image here (note how the name is the same as my repo name): [ghcr.io/anushapb/codespacer](https://github.com/AnushaPB/codespacer/pkgs/container/codespacer)
+You can see my image here (note how the name is the same as my repo name, but lowercase): [ghcr.io/anushapb/codespacer](https://github.com/AnushaPB/codespacer/pkgs/container/codespacer)
 
 ## 2. Setting up a devcontainer
 
