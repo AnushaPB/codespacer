@@ -1,6 +1,7 @@
 {
 	"name": "R Environment",
-	"image": "ghcr.io/${GITHUB_REPOSITORY}:latest",
+	// CHANGE: from ghcr.io/anushapb/codespacer:latest to ghcr.io/username/reponame:latest
+	"image": "ghcr.io/anushapb/codespacer:latest",
 	"runArgs": [ "--security-opt", "seccomp=unconfined" ],
 	"waitFor": "onCreateCommand",
 	"features": {
