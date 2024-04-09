@@ -2,12 +2,7 @@
 
 This repository provides an example workflow of how to setup a GitHub codespace for R. First, a Docker image with all the necessary dependencies is built using a GitHub Action and pushed to the GitHub Container Registry. Then, the image is used to build the codespace from this image. Some additional setup is also done to make sure the RStudio session starts automatically and is in the correct project.
 
-This repository can be forked and used as a template for setting up your own codespace for R. There are only two  changes required:
-1. Change the [docker-image.yml](.github/workflows/docker-image.yml) to push the image to your github account (i.e., change `ghcr.io/anushapb/codespacer:latest` to `ghcr.io/yourusername/yourimagename:latest`)
-
-2. Change the [docker-image.yml](.github/workflows/docker-image.yml) file to use your image (i.e., change `ghcr.io/anushapb/codespacer:latest` to `ghcr.io/yourusername/yourimagename:latest`)
-
-You will likely also want to update the [install.R](install.R) file to include any additional R packages you want to install.
+This repository can be forked and used as a template for setting up your own codespace for R. No changes are required, but you will likely also want to update the [install.R](install.R) file to include any additional R packages you want to install.
 
 This repository uses code from: https://github.com/boettiger-lab/nasa-topst-env-justice
 
@@ -62,9 +57,7 @@ remotes::install_github('AnushaPB/wingen')
 
 ### 1.2 Building the Docker image
 
-We will use a GitHub Action to automatically build our Docker image and push it to the GitHub container registry whenever changes are made to the specified files. The GitHub Action is setup using the [docker-image.yml](.github/workflows/docker-image.yml) file in the [.github/workflows](.github/workflows) folder:
-
-***edit this file to use your image (i.e., change `ghcr.io/anushapb/codespacer:latest` to `ghcr.io/yourusername/yourimagename:latest`)**
+We will use a GitHub Action to automatically build our Docker image and push it to the GitHub container registry whenever changes are made to the specified files. The GitHub Action is setup using the [docker-image.yml](.github/workflows/docker-image.yml) file in the [.github/workflows](.github/workflows) folder. The Docker image name will be the same as your repository name.:
 
 ```yaml
 name: docker-build
@@ -93,16 +86,14 @@ jobs:
           username: ${{github.actor}}
           password: ${{secrets.GITHUB_TOKEN}}
       - name: Build the Docker image
-        # CHANGE from ghcr.io/anushapb/codespacer:latest to `ghcr.io/yourusername/yourimagename:latest`
-        run: docker build . --file Dockerfile --tag ghcr.io/anushapb/codespacer:latest
+        run: docker build . --file Dockerfile --tag ghcr.io/${GITHUB_REPOSITORY}:latest
       - name: Publish
-        # CHANGE from ghcr.io/anushapb/codespacer:latest to `ghcr.io/yourusername/yourimagename:latest`
-        run: docker push ghcr.io/anushapb/codespacer:latest
+        run: docker push ghcr.io/${GITHUB_REPOSITORY}:latest
 ```
 
 Anytime you change the Dockerfile, docker-image.yml, or install.R files, the Docker image will be built and pushed to the GitHub container registry **automatically!**
 
-You can see the image here: [ghcr.io/anushapb/codespacer](https://github.com/AnushaPB/codespacer/pkgs/container/codespacer)
+You can see my image here (note how the name is the same as my repo name): [ghcr.io/anushapb/codespacer](https://github.com/AnushaPB/codespacer/pkgs/container/codespacer)
 
 ## 2. Setting up a devcontainer
 
@@ -111,7 +102,6 @@ We can now use the Docker image we've built as the base our codespace. We use th
 File overview:
 
 1. [devcontainer.json](.devcontainer/devcontainer.json) - a json file which specifies how to setup the container (i.e., the Docker image to use, the extensions to install, and the settings for the codespace). 
-***edit this file to use your image (i.e., change `ghcr.io/anushapb/codespacer:latest` to `ghcr.io/yourusername/yourimagename:latest`)**
 
 1. [setup.sh](.devcontainer/setup.sh) - a shell script that runs when the codespace is created to setup the Rstudio session.
 
