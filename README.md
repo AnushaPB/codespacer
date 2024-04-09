@@ -2,7 +2,7 @@
 
 This repository provides an example workflow of how to setup a GitHub codespace for R. First, a Docker image with all the necessary dependencies is built using a GitHub Action and pushed to the GitHub Container Registry. Then, the image is used to build the codespace from this image. Some additional setup is also done to make sure the RStudio session starts automatically and is in the correct project.
 
-This repository can be forked and used as a template for setting up your own codespace for R. No changes are required, but you will likely also want to update the [install.R](install.R) file to include any additional R packages you want to install.
+This repository can be forked and used as a template for setting up your own codespace for R. Only one change is required, and that is to change the [devcontainer.json](.devcontainer/devcontainer.json) file to point to your Docker image (i.e., change from ghcr.io/anushapb/codespacer:latest to ghcr.io/username/reponame:latest). No other changes are required, but you will likely also want to update the [install.R](install.R) file to include any additional R packages you want to install.
 
 This repository uses code from: https://github.com/boettiger-lab/nasa-topst-env-justice
 
@@ -102,7 +102,7 @@ We can now use the Docker image we've built as the base our codespace. We use th
 
 File overview:
 
-1. [devcontainer.json](.devcontainer/devcontainer.json) - a json file which specifies how to setup the container (i.e., the Docker image to use, the extensions to install, and the settings for the codespace). 
+1. [devcontainer.json](.devcontainer/devcontainer.json) - a json file which specifies how to setup the container (i.e., the Docker image to use, the extensions to install, and the settings for the codespace). **In this file change the Docker image path from ghcr.io/anushapb/codespacer:latest to your image (i.e., ghcr.io/username/reponame:latest).**
 
 1. [setup.sh](.devcontainer/setup.sh) - a shell script that runs when the codespace is created to setup the Rstudio session.
 
