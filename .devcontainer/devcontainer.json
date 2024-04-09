@@ -1,6 +1,6 @@
 {
 	"name": "R Environment",
-	"image": "ghcr.io/${GITHUB_REPOSITORY,,}:latest",
+	"image": "ghcr.io/${GITHUB_REPOSITORY}:latest",
 	"runArgs": [ "--security-opt", "seccomp=unconfined" ],
 	"waitFor": "onCreateCommand",
 	"features": {
