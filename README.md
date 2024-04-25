@@ -18,9 +18,9 @@ The main Docker terms to know are:
 
 For more information about Docker: https://docs.docker.com/get-started/overview/
 
-**GitHub action basics:** We could build the Docker image on our own computer, but that would mean everytime we changed anything about our image we would have to bother to do it again. Instead, we can just have GitHub do it! In general, GitHub Actions are a way to automate tasks in your repository.
+**GitHub Action basics:** We could build the Docker image on our own computer, but that would mean everytime we changed anything about our image we would have to bother to do it again. Instead, we can just have GitHub do it! In general, GitHub Actions are a way to automate tasks in your repository.
 
-GitHub actions are free for public repositories. For private repositories, you get a maximum number of "minutes" per month which varies based on the type of account you have (2000 minutes for GitHub Free). For more information about GitHub Actions: https://docs.github.com/en/actions
+GitHub Actions are free for public repositories. For private repositories, you get a maximum number of "minutes" per month which varies based on the type of account you have (2000 minutes for GitHub Free). For more information about GitHub Actions: https://docs.github.com/en/actions
 
 ### 1.1 The Dockerfile
 
