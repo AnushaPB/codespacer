@@ -1,6 +1,6 @@
 # Setting up GitHub codespaces for R
 
-This repository provides an example workflow of how to setup a GitHub codespace for R. First, a Docker image with all the necessary dependencies is built using a GitHub Action and pushed to the GitHub Container Registry. Then, the image is used to build the codespace. Some additional setup is also done to make sure the RStudio session starts automatically and is in the correct project.
+This repository provides an example workflow of how to setup a GitHub codespace for R. First, we handle all of our dependencies using a Docker image which we build automatically using a GitHub Action. Then, the image is used to build the codespace such that the codespace has all of our dependencies installed. Some additional setup is also done to make sure the RStudio session starts automatically and is in the correct project.
 
 This repository can be forked and used as a template for setting up your own codespace for R. Only one change is required, and that is to change the [devcontainer.json](.devcontainer/devcontainer.json) file to point to your Docker image (i.e., change from ghcr.io/anushapb/codespacer:latest to ghcr.io/username/reponame:latest). No other changes are required, but you will likely also want to update the [install.R](install.R) file to include any additional R packages you want to install.
 
