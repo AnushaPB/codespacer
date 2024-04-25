@@ -58,7 +58,7 @@ remotes::install_github('AnushaPB/wingen')
 
 ### 1.2 Building the Docker image
 
-We will use a GitHub Action to automatically build our Docker image and push it to the GitHub container registry whenever changes are made to the specified files. The GitHub Action is setup using the [docker-image.yml](.github/workflows/docker-image.yml) file in the [.github/workflows](.github/workflows) folder. The Docker image name will be the same as your repository name (note: if there are any uppercase letters in your username or repo name, they will be converted to lower case).:
+We will use a GitHub Action to automatically build our Docker image and push it to the GitHub container registry whenever changes are made to the specified files. The GitHub Action is setup using the [docker-image.yml](.github/workflows/docker-image.yml) file in the [.github/workflows](.github/workflows) folder. The Docker image name will be the same as your repository name (note: if there are any uppercase letters in your username or repo name, they will be converted to lower case):
 
 ```yaml
 name: docker-build
