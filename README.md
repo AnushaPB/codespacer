@@ -11,7 +11,7 @@ This repository uses code from: https://github.com/boettiger-lab/nasa-topst-env-
 To build a Docker image for the codespace, we use a [Dockerfile](Dockerfile) that sets up a Docker image with the necessary dependencies for running R. The Docker image is built using a GitHub Action and pushed to the GitHub Container Registry. 
 
 **Docker basics:**  Imagine you bought a brand new Lenovo laptop, installed an Ubuntu operating system on it, installed R and RStudio, installed all of the packages you needed and then gave it to your friend. Docker is like doing that but it's a virtual computer than you can share with as many people as you want and set-up however you want it.
-the main Docker terms to know are:
+The main Docker terms to know are:
 1. **Dockerfile** - text file of instructions for creating the docker image (specifies what operating system, what software, etc.). The Docker file is used to build the Docker image.
 2. **Docker image** - package that contains everything we specified in the Dockerfile needed to run the code. The Docker image is used to create a Docker container.
 3. **Docker container** - the actual thing that runs and you interact with (like a virtual machine/computer).
