@@ -2,6 +2,10 @@
 	"name": "R Environment",
 	// CHANGE: from ghcr.io/anushapb/codespacer:latest to ghcr.io/username/reponame:latest
 	"image": "ghcr.io/anushapb/codespacer:latest",
+	"extensions": [
+	        "GitHub.copilot",
+	        "GitHub.copilot-chat"
+    	],
 	"runArgs": [ "--security-opt", "seccomp=unconfined" ],
 	"waitFor": "onCreateCommand",
 	"features": {
