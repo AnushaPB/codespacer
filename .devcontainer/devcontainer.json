@@ -35,10 +35,5 @@
 			"rdebugger.r-debugger"		
 			]
 		}
-	  },
-
-	// Use 'postCreateCommand' to run commands after the container is created.
-	"postCreateCommand": "bash .devcontainer/setup.sh",
-	"postAttachCommand": "sudo rstudio-server start &> /dev/null && bash .devcontainer/welcome.sh",
-	"remoteUser": "rstudio"
+	  }
 }
