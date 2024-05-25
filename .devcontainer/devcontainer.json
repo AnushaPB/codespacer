@@ -36,15 +36,6 @@
 			]
 		}
 	  },
-	// Forward Jupyter and RStudio ports
-	"forwardPorts": [8787],
-	"portsAttributes": {
-		"8787": {
-			"label": "Rstudio",
-			"requireLocalPort": true,
-			"onAutoForward": "ignore"
-		}
-	},
 
 	// Use 'postCreateCommand' to run commands after the container is created.
 	"postCreateCommand": "bash .devcontainer/setup.sh",
